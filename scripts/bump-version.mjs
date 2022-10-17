@@ -23,8 +23,9 @@ const title = `## ${version} (${date})`;
 await fs.ensureFile('CHANGELOG.md');
 const oldChangelog = await fs.readFile('CHANGELOG.md', 'utf8');
 const changelog = [title, newChangelog, oldChangelog].filter((item) => !!item).join('\n\n');
-
 await fs.writeFile('CHANGELOG.md', changelog);
+
 console.log(`\nNow you can make adjustments to ${chalk.cyan('CHANGELOG.md')}. Then press enter to continue.`);
 await $`read`;
+
 await fs.writeFileSync('version', version);
