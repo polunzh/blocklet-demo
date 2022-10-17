@@ -11,7 +11,7 @@ console.log(`\nNow you can make adjustments to ${chalk.cyan('CHANGELOG.md')}. Th
 let newChangelog = '';
 
 try {
-  const gitRes = await $`git log --pretty=format:"- %s" "main"...HEAD`;
+  const gitRes = await $`git log --pretty=format:"- %s" "master"...HEAD`;
   newChangelog = gitRes.stdout.trim();
 } catch {
   console.error(chalk.redBright('Could not get git log, please write changelog manually.'));
