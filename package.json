@@ -1,6 +1,6 @@
 {
   "name": "blocklet-demo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "dev": "blocklet dev",
     "eject": "vite eject",
@@ -9,13 +9,14 @@
     "start": "npm-run-all --parallel start:*",
     "start:client": "vite --host",
     "start:api": "NODE_ENV=development nodemon api/index.js -w api",
-    "clean": "rm -rf .blocklet",
+    "clean": "zx scripts/build-clean.mjs",
     "bundle": "npm run bundle:client && npm run bundle:api",
     "bundle:client": "vite build",
     "bundle:api": "npm run clean && blocklet bundle --zip --create-release",
     "deploy": "npm run bundle && blocklet deploy .blocklet/bundle",
     "upload": "npm run bundle && blocklet upload .blocklet/release/blocklet.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "bump-version": "zx scripts/bump-version.mjs"
   },
   "lint-staged": {
     "*.{mjs,js,jsx,ts,tsx}": [
@@ -60,6 +61,7 @@
   "devDependencies": {
     "@arcblock/eslint-config": "^0.2.3",
     "@vitejs/plugin-react": "^2.1.0",
+    "bumpp": "^8.2.1",
     "eslint": "^8.25.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.5.0",
@@ -70,6 +72,7 @@
     "vite": "^3.1.8",
     "vite-plugin-blocklet": "^0.4.74",
     "vite-plugin-html": "^3.2.0",
-    "vite-plugin-svgr": "^2.2.2"
+    "vite-plugin-svgr": "^2.2.2",
+    "zx": "^7.1.1"
   }
 }
