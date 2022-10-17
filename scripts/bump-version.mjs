@@ -2,7 +2,7 @@
 import { execSync } from 'child_process';
 import { $, chalk, fs } from 'zx';
 
-execSync('bumpp package.json', { stdio: 'inherit' });
+execSync('bumpp --no-tag --no-commit --no-push package.json', { stdio: 'inherit' });
 
 const { version } = await fs.readJSON('package.json');
 
